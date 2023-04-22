@@ -9,8 +9,7 @@
   padding: 0;
   margin: 10px;
 
-
-  > .content {
+  .content {
     border-top: 1px dotted $color-mid-light;
     display: flex;
     flex-direction: column;
@@ -18,12 +17,7 @@
     margin: 0 $sp-small;
     padding: $sp-medium $sp-small $sp-small;
 
-    > a,
-    h3,
-    p {
-      display: block;
-      margin: $sp-small 0;
-    }
+
   }
 
   .footer {

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import './global.scss'
-import App from "./components/app/app.component.tsx";
+import {App} from "./components/app/app.component.tsx";
 import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
 
 const queryClient = new QueryClient();
