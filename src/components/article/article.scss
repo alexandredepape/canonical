@@ -1,0 +1,47 @@
+@import "../../global";
+
+
+.card {
+  @extend %p-card--highlighted;
+
+  display: flex !important;
+  flex-direction: column;
+  padding: 0;
+  margin: 10px;
+
+
+  > .content {
+    border-top: 1px dotted $color-mid-light;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 $sp-small;
+    padding: $sp-medium $sp-small $sp-small;
+
+    > a,
+    h3,
+    p {
+      display: block;
+      margin: $sp-small 0;
+    }
+  }
+
+  .footer {
+    border-top: 1px dotted $color-mid-light;
+    font-size: 0.875rem;
+    margin: auto $sp-small 0;
+    max-width: inherit;
+    padding: $sp-medium $sp-small;
+  }
+
+  .header {
+    border-radius: 2px;
+    padding: $sp-medium $sp-medium $sp-small;
+    border-top: 3px solid $color-mid-dark;
+    margin-bottom: 0;
+  }
+}
+
+
+
+
