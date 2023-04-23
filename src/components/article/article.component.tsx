@@ -1,45 +1,41 @@
 import {IArticle} from "../../interfaces/IArticle";
 import './article.scss';
 import * as utils from "../../utils";
-import {flatten} from "lodash";
 
 interface IArticleProps {
     article: IArticle
 }
 
 
+function getToLocaleDateString(article: IArticle) {
+    return new Date(article.date).toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
 export function Article({article}: IArticleProps) {
-    function getTopicName() {
-        const topics = flatten(article._embedded['wp:term']);
-        const topicId = article.topic.length > 0 ? article.topic[0] : article.categories[0];
-        const topic = topics.find((topic) => topic.id === topicId);
-        return topic?.name;
-    }
+
 
     return (
         <div className='col-4 card'>
-            <header className="header">
-                {getTopicName()}
-            </header>
+            <div className="header">
+                {article.topic.toUpperCase()}
+            </div>
             <div className="content">
-                <img alt="" height="185" src={article.featured_media}/>
-                <h3 className="p-heading--4">
-                    <a>{article.title.rendered}</a>
-                </h3>
-                <div>
+                <img alt={`Image for ${article.title}`} height="185" src={article.imgUrl}/>
+                <a href={article.link} className="p-heading--4">{utils.capitalise(article.title)}</a>
+                <em>
                     {'By '}
-                    <a>{article._embedded.author[0].name}</a>
+                    <a>{utils.capitalise(article.authorName)}</a>
                     {
-                        ' on ' + new Date(article.date).toLocaleDateString('en-GB', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        })
+                        ' on ' + getToLocaleDateString(article)
                     }
-                </div>
+                </em>
             </div>
             <div className="footer">
-                {utils.upperCaseFirstLetter(article.type)}
+                {utils.capitalise(article.type)}
             </div>
         </div>
     );
